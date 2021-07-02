@@ -1,3 +1,3 @@
 run 'npm i'
 
-then run 'npm test --coverage'
+then run 'npm run jestStart'
