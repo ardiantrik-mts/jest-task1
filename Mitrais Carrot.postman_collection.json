@@ -1,0 +1,2470 @@
+{
+	"info": {
+		"_postman_id": "b68c1710-3761-403d-ac12-30b114cc7f69",
+		"name": "Mitrais Carrot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Staff Group",
+			"item": [
+				{
+					"name": "Create Group Staff",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response Status\r",
+									"pm.test(\"Test Post is Succes\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([201,400]);\r",
+									"});\r",
+									"\r",
+									"// Response Body\r",
+									"pm.test(\"Data is Correct\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.carrot).to.eql(1600);\r",
+									"  pm.expect(responseJson.note).to.eql(\"this is reward after project on june 2021\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"  pm.expect(jsonData.groupname).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.carrot).to.be.a(\"number\");\r",
+									"  pm.expect(jsonData.note).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.managername).to.be.a(\"string\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"groupname\": \"Team Hore Senior Programmer 9\",\r\n    \"carrot\": 1600,\r\n    \"note\": \"this is reward after project on june 2021\",\r\n    \"managername\": \"60d9379fb92fe5464878d926\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/staffgroup",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"staffgroup"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Group Staff",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"groupname\": \"Team Hore Senior Programmer 9\",\r\n    \"carrot\": 1600,\r\n    \"note\": \"this is reward after project on june 2021\",\r\n    \"managername\": \"60d9379fb92fe5464878d926\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/staffgroup",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"staffgroup"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "283"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"11b-iwtOWa3+JzMhJHdzlj9ShvPTVMw\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Jun 2021 06:21:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"members\": [],\n    \"_id\": \"60dc0d6258d48d36b8b103a1\",\n    \"groupname\": \"Team Hore Senior Programmer 9\",\n    \"carrot\": 1600,\n    \"note\": \"this is reward after project on june 2021\",\n    \"managername\": \"60d9379fb92fe5464878d926\",\n    \"createdAt\": \"2021-06-30T06:21:22.923Z\",\n    \"updatedAt\": \"2021-06-30T06:21:22.923Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response Status\r",
+									"pm.test(\"Test Post is Succes\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([200,400]);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"array\")\r",
+									"  pm.expect(jsonData[1].groupname).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData[1].carrot).to.be.a(\"number\");\r",
+									"  pm.expect(jsonData[1].note).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData[1].managername.name).to.be.a(\"string\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/staffgroup",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"staffgroup"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Group",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url}}/staffgroup",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"staffgroup"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "263"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"107-5c33vA/z5DZV2rLOhk3vZ7B4z8k\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Jun 2021 08:01:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"members\": [],\n        \"_id\": \"60dc0d6258d48d36b8b103a1\",\n        \"groupname\": \"Team Hore Senior Programmer 9\",\n        \"carrot\": 1600,\n        \"note\": \"this is reward after project on june 2021\",\n        \"managername\": null,\n        \"createdAt\": \"2021-06-30T06:21:22.923Z\",\n        \"updatedAt\": \"2021-06-30T06:21:22.923Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Group by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response Status\r",
+									"pm.test(\"Test Post is Succes\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([200,400]);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"60dbef55c51cb4326ceecad1\"));\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\")\r",
+									"  pm.expect(jsonData.members).to.be.an(\"array\")\r",
+									"  pm.expect(jsonData.groupname).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.carrot).to.be.a(\"number\");\r",
+									"  pm.expect(jsonData.note).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.managername).to.be.a(\"string\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/staffgroup/{{id-group}}",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"staffgroup",
+								"{{id-group}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Data Staff Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response Status\r",
+									"pm.test(\"Test Patc is Succes\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([200,400]);\r",
+									"});\r",
+									"\r",
+									"// Response Body\r",
+									"pm.test(\"Data is Correct\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.carrot).to.eql(980);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+									"   pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"60dbef55c51cb4326ceecad1\"));\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"  pm.expect(jsonData.groupname).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.carrot).to.be.a(\"number\");\r",
+									"  pm.expect(jsonData.note).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.managername).to.be.a(\"string\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"carrot\": 980\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/staffgroup/{{id-group}}",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"staffgroup",
+								"{{id-group}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add member to Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response Status\r",
+									"pm.test(\"Test Post is Succes\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([200,400]);\r",
+									"});\r",
+									"\r",
+									"// Response Body\r",
+									"pm.test(\"Data is Correct\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.members).to.be.an(\"array\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+									"   pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"60dbef55c51cb4326ceecad1\"));\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"  pm.expect(jsonData.groupname).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.carrot).to.be.a(\"number\");\r",
+									"  pm.expect(jsonData.note).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.managername).to.be.a(\"string\");\r",
+									"   pm.expect(jsonData.members).to.be.a(\"array\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"members\" : [\r\n        \"60dadec7edfb843d1c74a049\", \"60dadbdd341b6d42fc0c55c5\", \"60dad44e5c8df937d832fced\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/staffgroup/add/{{id-group}}",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"staffgroup",
+								"add",
+								"{{id-group}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete member group from group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response Status\r",
+									"pm.test(\"Test Post is Succes\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([200,404]);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+									"   pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"60dbef55c51cb4326ceecad1\"));\r",
+									"   pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"60dadec7edfb843d1c74a049\"));\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWhtYWQgc2FudG9zbyIsInJvbGUiOjIsImlhdCI6MTYyNDUwMzkzMSwiZXhwIjoxNjI0NTA0NTMxfQ.LizVQxDGugMmukXHr-m9UtsylHB1rxo_Zudm30aB63I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "period",
+									"value": "Q1 2021",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "duration",
+									"value": "120",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "id_item",
+									"value": "7",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "stock",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "price",
+									"value": "900000",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"value": "uploads/kapal.jpg",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base-url}}/staffgroup/delete/{{id-group}}/{{id-group-member}}",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"staffgroup",
+								"delete",
+								"{{id-group}}",
+								"{{id-group-member}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Group by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/staffgroup/60d93f569c6eb74a04f26e76",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"staffgroup",
+								"60d93f569c6eb74a04f26e76"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Item Bazaar",
+			"item": [
+				{
+					"name": "ADD ITEM",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response Status\r",
+									"pm.test(\"Test Post is Succes\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([201,200,400]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Gundam Unicorn",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "robot-robotan",
+									"type": "text"
+								},
+								{
+									"key": "expiredDate",
+									"value": "2021-07-01",
+									"type": "text"
+								},
+								{
+									"key": "carrotRate",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Ardian_K315/Downloads/21428898_5d75b35e-13d8-4446-8605-661159b3a4af_1083_1389.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base-url}}/item/",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"item",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL ITEM",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response Status\r",
+									"pm.test(\"GET Data Successfully\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([201,200,400]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\")\r",
+									"  pm.expect(jsonData.results[0].name).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.results[0].stock).to.be.a(\"number\");\r",
+									"  pm.expect(jsonData.results[0].description).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.results[0].expiredDate).to.be.a(\"string\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/item",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"item"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ITEM by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response Status\r",
+									"pm.test(\"GET Data Successfully\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([201,200,400]);\r",
+									"});\r",
+									"\r",
+									"// Response Body\r",
+									"pm.test(\"Data Response is Correct\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.results.name).to.eql(\"Gandamu Unicorn\");\r",
+									"  pm.expect(responseJson.results.carrotRate).to.eql(10);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\")\r",
+									"  pm.expect(jsonData.results.name).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.results.stock).to.be.a(\"number\");\r",
+									"  pm.expect(jsonData.results.description).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.results.expiredDate).to.be.a(\"string\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/item/{{id-item}}",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"item",
+								"{{id-item}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH ITEM",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response Status\r",
+									"pm.test(\"Test Patc is Succes\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([200,400]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data Response is Correct\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.message).to.eql(\"Data Updated\");\r",
+									"  pm.expect(responseJson.status).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Ardian_K315/Downloads/108214693-odaiba-toky-japan-jul-1-2018-real-scale-unicorn-gundam-robot-model-at-diver-city-tokyo-plaza-mall-in.jpg"
+								},
+								{
+									"key": "name",
+									"value": "Gandamu Unicorn",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base-url}}/item/{{id-item}}",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"item",
+								"{{id-item}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SET ITEM ACTIVE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response Status\r",
+									"pm.test(\"Successfully set status to acctive\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([200,400]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data Response is Correct\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.message).to.eql(\"Data Item Actived\");\r",
+									"  pm.expect(responseJson.status).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"staffGroups\" : [\"60d911a964afdf1cac1bb4c2\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/item/setActive/{{id-item}}",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"item",
+								"setActive",
+								"{{id-item}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SET ITEM INACTIVE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response Status\r",
+									"pm.test(\"Successfully set status to inactive\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([200,400]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data Response is Correct\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.message).to.eql(\"Data Item Inactived\");\r",
+									"  pm.expect(responseJson.status).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/item/setInactive/{{id-item}}",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"item",
+								"setInactive",
+								"{{id-item}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE ITEM",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response Status\r",
+									"pm.test(\"Test Patc is Succes\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([200,400]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data Response is Correct\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.message).to.eql(\"Data Deleted\");\r",
+									"  pm.expect(responseJson.status).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/item/{{id-item}}",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"item",
+								"{{id-item}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Harvest",
+			"item": [
+				{
+					"name": "Create Harvest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response Status\r",
+									"pm.test(\"Test Post is Succes\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([201,400,500]);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"  pm.expect(jsonData.success).to.be.a(\"boolean\");\r",
+									"  pm.expect(jsonData.message).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.status).to.be.a(\"number\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hYmJhbmkxMiIsIl9pZCI6IjYwZGFkYmRkMzQxYjZkNDJmYzBjNTVjNSIsInJvbGUiOjIsImlhdCI6MTYyNTAzODMzMSwiZXhwIjoxNjI1MDc0MzMxfQ.jTUuRKStHzFAkDAnpBC6pGcfOaMf7kigrw4M790Ng3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"year\": 2021,\r\n    \"harvest\" : 30000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/harvest",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"harvest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Harvest List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response Status\r",
+									"pm.test(\"Test Post is Succes\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([201,200,400,500]);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"  pm.expect(jsonData.success).to.be.a(\"boolean\");\r",
+									"  pm.expect(jsonData.message).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.status).to.be.a(\"number\");\r",
+									"  pm.expect(jsonData.results[0].year).to.be.a(\"number\");\r",
+									"  pm.expect(jsonData.results[0].harvest).to.be.a(\"number\");\r",
+									"  pm.expect(jsonData.results[0].carrot_in_barn).to.be.a(\"number\");\r",
+									"  pm.expect(jsonData.results[0].distributed_carrot).to.be.a(\"number\");\r",
+									"  pm.expect(jsonData.results[0].status).to.be.a(\"string\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hYmJhbmkxMiIsIl9pZCI6IjYwZGFkYmRkMzQxYjZkNDJmYzBjNTVjNSIsInJvbGUiOjIsImlhdCI6MTYyNTAzODMzMSwiZXhwIjoxNjI1MDc0MzMxfQ.jTUuRKStHzFAkDAnpBC6pGcfOaMf7kigrw4M790Ng3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base-url}}/harvest",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"harvest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Harvest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response Status\r",
+									"pm.test(\"Test Post is Succes\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([201,400]);\r",
+									"});\r",
+									"\r",
+									"// Response Body\r",
+									"pm.test(\"Data is Correct\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.nModified).to.eql(1);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"  pm.expect(jsonData.n).to.be.a(\"number\");\r",
+									"  pm.expect(jsonData.nModified).to.be.a(\"number\");\r",
+									"  pm.expect(jsonData.ok).to.be.a(\"number\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hYmJhbmkxMiIsIl9pZCI6IjYwZGFkYmRkMzQxYjZkNDJmYzBjNTVjNSIsInJvbGUiOjIsImlhdCI6MTYyNTAzODMzMSwiZXhwIjoxNjI1MDc0MzMxfQ.jTUuRKStHzFAkDAnpBC6pGcfOaMf7kigrw4M790Ng3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"harvest\" : 3000000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/harvest/add/60dadc1f341b6d42fc0c55cd",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"harvest",
+								"add",
+								"60dadc1f341b6d42fc0c55cd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Transcation harvest to maneger",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response Status\r",
+									"pm.test(\"Test Post is Succes\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([201,200,400,500,404]);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"  pm.expect(jsonData.success).to.be.a(\"boolean\");\r",
+									"  pm.expect(jsonData.message).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.status).to.be.a(\"number\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hYmJhbmkxMiIsIl9pZCI6IjYwZGFkYmRkMzQxYjZkNDJmYzBjNTVjNSIsInJvbGUiOjIsImlhdCI6MTYyNTAzODMzMSwiZXhwIjoxNjI1MDc0MzMxfQ.jTUuRKStHzFAkDAnpBC6pGcfOaMf7kigrw4M790Ng3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"carrotAmount\" : 233800,\r\n    \"transactionNote\" : \"birthday give heheh 1\",\r\n    \"user2\": \"60dadec7edfb843d1c74a049\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/harvest/transaction/60dadc1f341b6d42fc0c55cd",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"harvest",
+								"transaction",
+								"60dadc1f341b6d42fc0c55cd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show History Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response Status\r",
+									"pm.test(\"Test Post is Succes\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([201,200,400,500]);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"  pm.expect(jsonData.success).to.be.a(\"boolean\");\r",
+									"  pm.expect(jsonData.message).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.status).to.be.a(\"number\");\r",
+									"  pm.expect(jsonData.results[0].transactionType).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.results[0].user2).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.results[0].flag).to.be.a(\"number\");\r",
+									"  pm.expect(jsonData.results[0].carrotAmount).to.be.a(\"number\");\r",
+									"  pm.expect(jsonData.results[0].transactionNote).to.be.a(\"string\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hYmJhbmkxMiIsIl9pZCI6IjYwZGFkYmRkMzQxYjZkNDJmYzBjNTVjNSIsInJvbGUiOjIsImlhdCI6MTYyNTAzODMzMSwiZXhwIjoxNjI1MDc0MzMxfQ.jTUuRKStHzFAkDAnpBC6pGcfOaMf7kigrw4M790Ng3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/harvest/showtransaction",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"harvest",
+								"showtransaction"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Parameter",
+			"item": [
+				{
+					"name": "CREATE PARAM",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "variable",
+									"value": "max_shared_carrot",
+									"type": "text"
+								},
+								{
+									"key": "limit",
+									"value": "20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base-url}}/param",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"param"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL PARAM",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/param",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"param"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH PARAM",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "paramLimit",
+									"value": "10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base-url}}/param/60da72aa3a1f06246024c0db",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"param",
+								"60da72aa3a1f06246024c0db"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Mock Request",
+			"item": [
+				{
+					"name": "Staff Group Copy",
+					"item": [
+						{
+							"name": "Create Group Staff",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Response Status\r",
+											"pm.test(\"Test Post is Succes\", () => {\r",
+											"  pm.expect(pm.response.code).to.be.oneOf([201,400]);\r",
+											"});\r",
+											"\r",
+											"// Response Body\r",
+											"pm.test(\"Data is Correct\", () => {\r",
+											"  const responseJson = pm.response.json();\r",
+											"  pm.expect(responseJson.carrot).to.eql(1600);\r",
+											"  pm.expect(responseJson.note).to.eql(\"this is reward after project on june 2021\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+											"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 100ms\", () => {\r",
+											"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response property matches environment variable\", function () {\r",
+											"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+											"});\r",
+											"\r",
+											"const jsonData = pm.response.json();\r",
+											"pm.test(\"Test data type of the response\", () => {\r",
+											"  pm.expect(jsonData).to.be.an(\"object\");\r",
+											"  pm.expect(jsonData.groupname).to.be.a(\"string\");\r",
+											"  pm.expect(jsonData.carrot).to.be.a(\"number\");\r",
+											"  pm.expect(jsonData.note).to.be.a(\"string\");\r",
+											"  pm.expect(jsonData.managername).to.be.a(\"string\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"groupname\": \"Team Hore Senior Programmer 9\",\r\n    \"carrot\": 1600,\r\n    \"note\": \"this is reward after project on june 2021\",\r\n    \"managername\": \"60d9379fb92fe5464878d926\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/staffgroup",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"staffgroup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Group",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Response Status\r",
+											"pm.test(\"Test Post is Succes\", () => {\r",
+											"  pm.expect(pm.response.code).to.be.oneOf([200,400]);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+											"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 100ms\", () => {\r",
+											"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response property matches environment variable\", function () {\r",
+											"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+											"});\r",
+											"\r",
+											"const jsonData = pm.response.json();\r",
+											"pm.test(\"Test data type of the response\", () => {\r",
+											"  pm.expect(jsonData).to.be.an(\"array\")\r",
+											"  pm.expect(jsonData[1].groupname).to.be.a(\"string\");\r",
+											"  pm.expect(jsonData[1].carrot).to.be.a(\"number\");\r",
+											"  pm.expect(jsonData[1].note).to.be.a(\"string\");\r",
+											"  pm.expect(jsonData[1].managername.name).to.be.a(\"string\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/staffgroup",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"staffgroup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Group by ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Response Status\r",
+											"pm.test(\"Test Post is Succes\", () => {\r",
+											"  pm.expect(pm.response.code).to.be.oneOf([200,400]);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+											"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 100ms\", () => {\r",
+											"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response property matches environment variable\", function () {\r",
+											"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+											"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"60dbef55c51cb4326ceecad1\"));\r",
+											"});\r",
+											"\r",
+											"const jsonData = pm.response.json();\r",
+											"pm.test(\"Test data type of the response\", () => {\r",
+											"  pm.expect(jsonData).to.be.an(\"object\")\r",
+											"  pm.expect(jsonData.members).to.be.an(\"array\")\r",
+											"  pm.expect(jsonData.groupname).to.be.a(\"string\");\r",
+											"  pm.expect(jsonData.carrot).to.be.a(\"number\");\r",
+											"  pm.expect(jsonData.note).to.be.a(\"string\");\r",
+											"  pm.expect(jsonData.managername).to.be.a(\"string\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/staffgroup/{{id-group}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"staffgroup",
+										"{{id-group}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Data Staff Group",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Response Status\r",
+											"pm.test(\"Test Patc is Succes\", () => {\r",
+											"  pm.expect(pm.response.code).to.be.oneOf([200,400]);\r",
+											"});\r",
+											"\r",
+											"// Response Body\r",
+											"pm.test(\"Data is Correct\", () => {\r",
+											"  const responseJson = pm.response.json();\r",
+											"  pm.expect(responseJson.carrot).to.eql(980);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+											"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 100ms\", () => {\r",
+											"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response property matches environment variable\", function () {\r",
+											"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+											"   pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"60dbef55c51cb4326ceecad1\"));\r",
+											"});\r",
+											"\r",
+											"const jsonData = pm.response.json();\r",
+											"pm.test(\"Test data type of the response\", () => {\r",
+											"  pm.expect(jsonData).to.be.an(\"object\");\r",
+											"  pm.expect(jsonData.groupname).to.be.a(\"string\");\r",
+											"  pm.expect(jsonData.carrot).to.be.a(\"number\");\r",
+											"  pm.expect(jsonData.note).to.be.a(\"string\");\r",
+											"  pm.expect(jsonData.managername).to.be.a(\"string\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"carrot\": 980\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/staffgroup/{{id-group}}",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"staffgroup",
+										"{{id-group}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add member to Group",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Response Status\r",
+											"pm.test(\"Test Post is Succes\", () => {\r",
+											"  pm.expect(pm.response.code).to.be.oneOf([200,400]);\r",
+											"});\r",
+											"\r",
+											"// Response Body\r",
+											"pm.test(\"Data is Correct\", () => {\r",
+											"  const responseJson = pm.response.json();\r",
+											"  pm.expect(responseJson.members).to.be.an(\"array\")\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+											"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 100ms\", () => {\r",
+											"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response property matches environment variable\", function () {\r",
+											"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+											"   pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"60dbef55c51cb4326ceecad1\"));\r",
+											"});\r",
+											"\r",
+											"const jsonData = pm.response.json();\r",
+											"pm.test(\"Test data type of the response\", () => {\r",
+											"  pm.expect(jsonData).to.be.an(\"object\");\r",
+											"  pm.expect(jsonData.groupname).to.be.a(\"string\");\r",
+											"  pm.expect(jsonData.carrot).to.be.a(\"number\");\r",
+											"  pm.expect(jsonData.note).to.be.a(\"string\");\r",
+											"  pm.expect(jsonData.managername).to.be.a(\"string\");\r",
+											"   pm.expect(jsonData.members).to.be.a(\"array\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"members\" : [\r\n        \"60dadec7edfb843d1c74a049\", \"60dadbdd341b6d42fc0c55c5\", \"60dad44e5c8df937d832fced\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/staffgroup/add/{{id-group}}",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"staffgroup",
+										"add",
+										"{{id-group}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete member group from group",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Response Status\r",
+											"pm.test(\"Test Post is Succes\", () => {\r",
+											"  pm.expect(pm.response.code).to.be.oneOf([200,404]);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+											"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 100ms\", () => {\r",
+											"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response property matches environment variable\", function () {\r",
+											"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+											"   pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"60dbef55c51cb4326ceecad1\"));\r",
+											"   pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"60dadec7edfb843d1c74a049\"));\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWhtYWQgc2FudG9zbyIsInJvbGUiOjIsImlhdCI6MTYyNDUwMzkzMSwiZXhwIjoxNjI0NTA0NTMxfQ.LizVQxDGugMmukXHr-m9UtsylHB1rxo_Zudm30aB63I",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "period",
+											"value": "Q1 2021",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "duration",
+											"value": "120",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "id_item",
+											"value": "7",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "stock",
+											"value": "1",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "price",
+											"value": "900000",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "image",
+											"value": "uploads/kapal.jpg",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base-url}}/staffgroup/delete/{{id-group}}/{{id-group-member}}",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"staffgroup",
+										"delete",
+										"{{id-group}}",
+										"{{id-group-member}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Group by Id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base-url}}/staffgroup/60d93f569c6eb74a04f26e76",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"staffgroup",
+										"60d93f569c6eb74a04f26e76"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "REGISTER",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Test Post is Success\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([200,400]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data is Correct\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.message).to.eql(\"User added successfully\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"  pm.expect(jsonData.success).to.be.a(\"boolean\");\r",
+									"  pm.expect(jsonData.message).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.status).to.be.a(\"number\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "bambang",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123123",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "bambang@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Bambang Suponco",
+									"type": "text"
+								},
+								{
+									"key": "roleId",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "jobFamiy",
+									"value": "SE",
+									"type": "text"
+								},
+								{
+									"key": "grade",
+									"value": "JP",
+									"type": "text"
+								},
+								{
+									"key": "dateOfBirth",
+									"value": "2021-06-28",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base-url}}/register",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Test Post is Success\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([200,400]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data is Correct\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.message).to.eql(\"login success\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"  pm.expect(jsonData.success).to.be.a(\"boolean\");\r",
+									"  pm.expect(jsonData.message).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.status).to.be.a(\"number\");\r",
+									"  pm.expect(jsonData.results).to.be.a(\"string\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "rabudiman",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base-url}}/login",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL USER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Test Post is Success\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([200,400]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data is Correct\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.message).to.eql(\"list all user\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"  pm.expect(jsonData.message).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.data).to.be.a(\"Array\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhYnVkaW1hbiIsIl9pZCI6IjYwZGMxNWM4YmEwYmUyMjA3YzEwYmZiNSIsInJvbGUiOjIsImlhdCI6MTYyNTAzNjMyNiwiZXhwIjoxNjI1MDcyMzI2fQ.0nV4HJjp5ncD2OIUqzu544mYf-xOBaf7slBKyKnpGDA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base-url}}/users/getAll",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER BY ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Test Post is Success\", () => {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"    pm.expect(jsonData).to.be.an(\"object\");\r",
+									"    pm.expect(jsonData.groups).to.be.a(\"array\");\r",
+									"    pm.expect(jsonData._id).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.username).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.password).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.email).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.name).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.roleId).to.be.a(\"number\");\r",
+									"    pm.expect(jsonData.jobFamily).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.grade).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.dateOfBirth).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.createdAt).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.updatedAt).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.__v).to.be.a(\"number\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhYnVkaW1hbiIsIl9pZCI6IjYwZGMxNWM4YmEwYmUyMjA3YzEwYmZiNSIsInJvbGUiOjIsImlhdCI6MTYyNTAzOTA5NywiZXhwIjoxNjI1MDc1MDk3fQ.OLnXupvEQ11Nyotwi_BOtuSw7VUTYl9lqNTnALKl-CQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/users/getById/:id",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users",
+								"getById",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60dc15f1ba0be2207c10bfbb"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LAST 2 DAY BIRTHDAY USER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Test Post is Success\", () => {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data is Correct\", () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.message).to.eql(\"Birthday user\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"    pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"    pm.expect(jsonData).to.be.an(\"object\");\r",
+									"    pm.expect(jsonData.results[0].groups).to.be.a(\"array\");\r",
+									"    pm.expect(jsonData.results[0]._id).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.results[0].username).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.results[0].password).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.results[0].email).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.results[0].jobFamily).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.results[0].name).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.results[0].roleId).to.be.a(\"number\");\r",
+									"    pm.expect(jsonData.results[0].grade).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.results[0].dateOfBirth).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.results[0].createdAt).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.results[0].updatedAt).to.be.a(\"string\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhYnVkaW1hbiIsIl9pZCI6IjYwZGMxNWM4YmEwYmUyMjA3YzEwYmZiNSIsInJvbGUiOjIsImlhdCI6MTYyNTAzNjMyNiwiZXhwIjoxNjI1MDcyMzI2fQ.0nV4HJjp5ncD2OIUqzu544mYf-xOBaf7slBKyKnpGDA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/users/birthday",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users",
+								"birthday"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ACTIVATE BIRTHDAY SCHEDULER",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Test Post is Success\", () => {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data is Correct\", () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.message).to.eql(\"Birthday scheduler is active\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"    pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"    pm.expect(jsonData).to.be.an(\"object\");\r",
+									"    pm.expect(jsonData.success).to.be.a(\"boolean\");\r",
+									"    pm.expect(jsonData.message).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.status).to.be.a(\"number\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhYnVkaW1hbiIsIl9pZCI6IjYwZGMxNWM4YmEwYmUyMjA3YzEwYmZiNSIsInJvbGUiOjIsImlhdCI6MTYyNTAzNjMyNiwiZXhwIjoxNjI1MDcyMzI2fQ.0nV4HJjp5ncD2OIUqzu544mYf-xOBaf7slBKyKnpGDA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/users/activateBirthdayScheduler",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users",
+								"activateBirthdayScheduler"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "wallet",
+			"item": [
+				{
+					"name": "get all wallet",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Test Post is Success\", () => {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"    pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"127.0.0.1:8080/api\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json; charset=utf-8\", () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"// const jsonData = pm.response.json();\r",
+									"// pm.test(\"Test data type of the response\", () => {\r",
+									"//     pm.expect(jsonData).to.be.an(\"object\");\r",
+									"//     pm.expect(jsonData.results[0].groups).to.be.a(\"array\");\r",
+									"//     pm.expect(jsonData.results[0]._id).to.be.a(\"string\");\r",
+									"//     pm.expect(jsonData.results[0].username).to.be.a(\"string\");\r",
+									"//     pm.expect(jsonData.results[0].password).to.be.a(\"string\");\r",
+									"//     pm.expect(jsonData.results[0].email).to.be.a(\"string\");\r",
+									"//     pm.expect(jsonData.results[0].jobFamily).to.be.a(\"string\");\r",
+									"//     pm.expect(jsonData.results[0].name).to.be.a(\"string\");\r",
+									"//     pm.expect(jsonData.results[0].roleId).to.be.a(\"number\");\r",
+									"//     pm.expect(jsonData.results[0].grade).to.be.a(\"string\");\r",
+									"//     pm.expect(jsonData.results[0].dateOfBirth).to.be.a(\"string\");\r",
+									"//     pm.expect(jsonData.results[0].createdAt).to.be.a(\"string\");\r",
+									"//     pm.expect(jsonData.results[0].updatedAt).to.be.a(\"string\");\r",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5lZWNocm9wb3MiLCJfaWQiOiI2MGQ5MzM5MDY0Njk1MDAxOTRlYjRhNzUiLCJpYXQiOjE2MjUwMzM3MDIsImV4cCI6MTYyNTA2OTcwMn0.A_gFV53iOlJe0CM4dX02AjdNyu7ayuW9lB_AVGA7AvQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8080/api/wallet/getAll",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"wallet",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWhtYWQgc2FudG9zbyIsInJvbGUiOjIsImlhdCI6MTYyNDg1MzU0MCwiZXhwIjoxNjI0ODU0MTQwfQ.BkGnWrf04h5SICxrwIuCGrAWSyXGUCVvUBodmis7Tdo",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}

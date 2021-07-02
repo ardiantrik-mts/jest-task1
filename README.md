@@ -1,1 +1,3 @@
-# jest-task1
+run 'npm i'
+
+then run 'npm test --coverage'

@@ -1,0 +1,7 @@
+node_modules/
+coverage/
+.env
+assets/upload/item/
+assets/test_image
+package-lock.json
+documentation/
