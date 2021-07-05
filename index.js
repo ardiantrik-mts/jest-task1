@@ -2,19 +2,20 @@ const express = require('express')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const fileUpload = require('express-fileupload');
+const cors = require('cors');
 dotenv.config()
 
-// const auth=require('./src/routes/auth')
+const auth=require('./src/routes/auth')
 const item=require('./src/routes/item')
-// const user=require('./src/routes/user')
+const user=require('./src/routes/user')
 const parameter=require('./src/routes/parameter')
 
-// const transaction=require('./src/routes/transaction')
-// const wallet=require('./src/routes/walletRoute')
-// const staffGroup=require('./src/routes/staffGroup')
-// const product=require('./src/routes/product')
-// const category=require('./src/routes/category')
-// const harvest=require('./src/routes/harvest')
+const transaction=require('./src/routes/transaction')
+const wallet=require('./src/routes/walletRoute')
+const staffGroup=require('./src/routes/staffGroup')
+const product=require('./src/routes/product')
+const category=require('./src/routes/category')
+const harvest=require('./src/routes/harvest')
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true})
@@ -50,6 +51,8 @@ app.use(fileUpload({
     },
 }));
 
+app.use(cors('*'))
+
 app.use(express.json())
 app.use(express.urlencoded({
     extended: true
@@ -57,13 +60,13 @@ app.use(express.urlencoded({
 
 //route list
 
-// app.use('/api',
-//  [auth,parameter,user,item,staffGroup,product,category,wallet,transaction,harvest]
-//  )
-
 app.use('/api',
- [parameter,item]
-)
+ [auth,parameter,user,item,staffGroup,product,category,wallet,transaction,harvest]
+ )
+
+// app.use('/api',
+//  [parameter,item]
+// )
 
 app.get('/', (req, res) => {
     return res.json({

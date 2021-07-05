@@ -32,7 +32,7 @@ const itemSchema = new mongoose.Schema({
     },
     imagePath: {
         type: String,
-        required: true,
+        // required: true,
     },
     staffGroups: [{
         // Waiting staff_group
