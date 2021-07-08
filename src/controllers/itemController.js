@@ -12,17 +12,17 @@ const item_post = async (req, res) => {
     // console.log(req.body)
 
     try {
-        // if(!req.files) {
-        //     return response(res, 500, false, "No File Uploaded!")
-        // } 
+        if(!req.files) {
+            return response(res, 500, false, "No File Uploaded!")
+        } 
 
-        // //Use the name of the input field (i.e. "avatar") to retrieve the uploaded file
-        // let item_img = req.files.image;
+        //Use the name of the input field (i.e. "avatar") to retrieve the uploaded file
+        let item_img = req.files.image;
         
-        // //Use the mv() method to place the file in upload directory (i.e. "uploads")
-        // const imagePath = assets_path + Date.now() + '-' + item_img.name
-        // // console.log(image_path);
-        // item_img.mv(imagePath);
+        //Use the mv() method to place the file in upload directory (i.e. "uploads")
+        const imagePath = assets_path + Date.now() + '-' + item_img.name
+        // console.log(image_path);
+        item_img.mv(imagePath);
         
 
         const item = new Item({
@@ -33,7 +33,7 @@ const item_post = async (req, res) => {
             claimed : 0,
             carrotRate: carrotRate,
             status: 0,
-            // imagePath: imagePath,
+            imagePath: imagePath,
             // staff_groups: [""]
         });
 
@@ -150,15 +150,15 @@ const item_delete = async (req, res) => {
     // console.log(req.params);
     const filter = req.params;
     try {
-        // const items = await Item.findOne({ _id: filter })
-        // const prevImage_path = items.imagePath
+        const items = await Item.findOne({ _id: filter })
+        const prevImage_path = items.imagePath
 
-        // fs.unlink(prevImage_path, (err) => {
-        //     if (err) {
-        //         return response(res, 500, false, "Unable to remove image",err)
-        //     }     
-        //     //file removed
-        // })
+        fs.unlink(prevImage_path, (err) => {
+            if (err) {
+                return response(res, 500, false, "Unable to remove image",err)
+            }     
+            //file removed
+        })
         
         const item = await Item.findByIdAndRemove(req.params._id);
         return response(res, 200, true, 'Data Deleted')

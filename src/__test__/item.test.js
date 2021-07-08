@@ -95,7 +95,7 @@ describe("Item Bazaar Unit Testing - Success : False Case", () => {
         expect(response.statusCode).toBe(500);
     });
 
-    // test("properly fetch /GET item", async () => {
+    // test("failed to fetch /GET item", async () => {
     //     const response = await request(app).get("/api/item");
     //     expect(response.statusCode).toBe(400);
     // });
@@ -126,7 +126,7 @@ describe("Item Bazaar Unit Testing - Success : False Case", () => {
     });
 
     test("failed to delete /DELETE item", async () => {
-        const response = await request(app).delete("/api/item/"+randomFalse_id)
+        const response = await request(app).delete("/api/item/60e56e0e02e39b35089f7f9c")
         expect(response.statusCode).toBe(500);
     });
 
